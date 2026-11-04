@@ -1,0 +1,15 @@
+@startuml
+actor User
+participant Main
+participant SourceCodeFile
+participant SecurityAuditVisitor
+participant "Security report" as Report
+User -> Main: run demonstration
+Main -> SourceCodeFile: new SourceCodeFile(...)
+Main -> SecurityAuditVisitor: new visitor
+Main -> SourceCodeFile: accept(visitor)
+SourceCodeFile -> SecurityAuditVisitor: visit(this)
+SecurityAuditVisitor -> SecurityAuditVisitor: inspect credentials and risk
+SecurityAuditVisitor -> Report: add issue and score
+Main <-- Report: print report
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+interface ProjectElement
+class SourceCodeFile
+class TestFile
+class ConfigurationFile
+class DependencyFile
+class Directory
+interface ProjectVisitor
+abstract class AbstractRecursiveProjectVisitor
+class SecurityAuditVisitor
+class ProjectStatisticsVisitor
+class QualityGateVisitor
+class ComplianceVisitor
+class TechnicalDebtVisitor
+ProjectElement <|.. SourceCodeFile
+ProjectElement <|.. TestFile
+ProjectElement <|.. ConfigurationFile
+ProjectElement <|.. DependencyFile
+ProjectElement <|.. Directory
+ProjectVisitor <|.. AbstractRecursiveProjectVisitor
+AbstractRecursiveProjectVisitor <|-- SecurityAuditVisitor
+AbstractRecursiveProjectVisitor <|-- ProjectStatisticsVisitor
+AbstractRecursiveProjectVisitor <|-- QualityGateVisitor
+AbstractRecursiveProjectVisitor <|-- ComplianceVisitor
+AbstractRecursiveProjectVisitor <|-- TechnicalDebtVisitor
+Directory o-- ProjectElement
+ProjectElement ..> ProjectVisitor : accept()
+ProjectVisitor ..> ProjectElement : visit()
+@enduml
